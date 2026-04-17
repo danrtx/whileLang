@@ -23,7 +23,10 @@ def analyze(code):
         parser.addErrorListener(MyErrorListener())
         tree = parser.program()
         visitor = SemanticVisitor()
+        visitor.errors = 0
         visitor.visit(tree)
+        if visitor.errors == 0:
+            print("Análisis completado sin errores semánticos.")
     except Exception as e:
         print(e)
 
